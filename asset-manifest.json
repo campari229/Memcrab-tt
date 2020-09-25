@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Memcrab-tt/static/css/main.d3f1bc8a.chunk.css",
+    "main.js": "/Memcrab-tt/static/js/main.7f00a4bb.chunk.js",
+    "main.js.map": "/Memcrab-tt/static/js/main.7f00a4bb.chunk.js.map",
+    "runtime-main.js": "/Memcrab-tt/static/js/runtime-main.df2c4a34.js",
+    "runtime-main.js.map": "/Memcrab-tt/static/js/runtime-main.df2c4a34.js.map",
+    "static/js/2.9d077a1e.chunk.js": "/Memcrab-tt/static/js/2.9d077a1e.chunk.js",
+    "static/js/2.9d077a1e.chunk.js.map": "/Memcrab-tt/static/js/2.9d077a1e.chunk.js.map",
+    "index.html": "/Memcrab-tt/index.html",
+    "precache-manifest.31c22702c76cb74d419d68dd94f754d6.js": "/Memcrab-tt/precache-manifest.31c22702c76cb74d419d68dd94f754d6.js",
+    "service-worker.js": "/Memcrab-tt/service-worker.js",
+    "static/css/main.d3f1bc8a.chunk.css.map": "/Memcrab-tt/static/css/main.d3f1bc8a.chunk.css.map",
+    "static/js/2.9d077a1e.chunk.js.LICENSE.txt": "/Memcrab-tt/static/js/2.9d077a1e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.df2c4a34.js",
+    "static/js/2.9d077a1e.chunk.js",
+    "static/css/main.d3f1bc8a.chunk.css",
+    "static/js/main.7f00a4bb.chunk.js"
+  ]
+}
