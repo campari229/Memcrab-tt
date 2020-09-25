@@ -8,10 +8,8 @@ const createRandomNumber = () => {
 
 export const rowCreator = (columns: number): Cell[] => {
   const row = []
-  let sum = 0;
   for (let i = 0; i < columns; i++) {
     const amount = createRandomNumber()
-    sum += amount;
     row.push({
       amount,
       id: id,
@@ -19,14 +17,6 @@ export const rowCreator = (columns: number): Cell[] => {
       isCloser: false,
     });
     id++;
-
-    if (row.length === columns) {
-      row.push({
-        amount: sum,
-        id: id,
-      });
-      id++;
-    };
   }
 
   return row;
@@ -46,7 +36,7 @@ export const cellsCreator = (rows: number, columns: number): Cell[][] => {
 
 export const getAverageValues = (array: Cell[][]): Cell[] => {
   let row = [];
-  for (let i = 0; i < array[0].length - 1; i++) {
+  for (let i = 0; i < array[0].length; i++) {
     let sum = 0;
     for (let j = 0; j < array.length; j++) {
       sum += array[j][i].amount
@@ -60,3 +50,23 @@ export const getAverageValues = (array: Cell[][]): Cell[] => {
   }
   return row
 };
+
+export const findClosest = (array: Cell[][], target: Cell, numberOfClosest: number): Cell[] => {
+  const fullArray = array.flat()
+  const arrayWithoutTarget = fullArray.filter(cell => cell.id !== target.id)
+  fullArray.sort((a, b) => a.amount - b.amount);
+  const closestArray: Cell[] = [];
+  
+  while (closestArray.length < numberOfClosest) {
+    let closest = arrayWithoutTarget[0];
+    for (let i = 0; i < arrayWithoutTarget.length; i++) {
+      if (Math.abs(target.amount - arrayWithoutTarget[i].amount) < Math.abs(target.amount - closest.amount)) {
+        closest = arrayWithoutTarget[i];
+      }
+    }
+    arrayWithoutTarget.splice(arrayWithoutTarget.indexOf(closest), 1);
+    closestArray.push(closest);
+  }
+
+  return closestArray
+} 
