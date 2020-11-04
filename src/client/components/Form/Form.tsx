@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 
 import './Form.scss';
 
@@ -11,7 +11,7 @@ export const Form = () => {
   const [closestIsValid, setClosestIsValid] = useState(true);
 
 
-  const rowsAndColumnsValidation = (inputValue) => {
+  const rowsAndColumnsValidation = (inputValue: string) => {
     if (inputValue && typeof Number(inputValue) === 'number') {
       return true;
     } else {
@@ -19,7 +19,7 @@ export const Form = () => {
     }
   }
 
-  const closestValidation = (value) => {
+  const closestValidation = (value: string) => {
     if (rowsInputValue && columnsInputValue) {
       if (Number(value) <= Number(rowsInputValue) * Number(columnsInputValue)) {
         return true;
@@ -29,7 +29,7 @@ export const Form = () => {
     }
   }
 
-  const makeMatrix = (e) => {
+  const makeMatrix = (e: SyntheticEvent) => {
     e.preventDefault()
 
     if (rowsAndColumnsValidation(rowsInputValue) && rowsAndColumnsValidation(columnsInputValue)) {

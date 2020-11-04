@@ -1,5 +1,5 @@
 const path = require('path');
-const APP_PATH = path.resolve(__dirname, 'src/client/index.jsx');
+const APP_PATH = path.resolve(__dirname, 'src/client/index.tsx');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -20,7 +20,8 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      }
+      },
+      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
     ]
   },
 

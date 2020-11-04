@@ -1,3 +1,4 @@
+import { Cell } from '../../Interfaces';
 
 let id = 1;
 
@@ -5,7 +6,7 @@ const createRandomNumber = () => {
   return Math.floor(Math.random() * (900) + 100);
 };
 
-export const rowCreator = (columns) => {
+export const rowCreator = (columns: number) => {
   const row = []
   for (let i = 0; i < columns; i++) {
     const amount = createRandomNumber()
@@ -23,7 +24,7 @@ export const rowCreator = (columns) => {
 
 
 
-export const cellsCreator = (rows, columns) => {
+export const cellsCreator = (rows: number, columns: number) => {
   const cells = [];
 
   for (let i = 0; i < rows; i++) {
@@ -33,7 +34,7 @@ export const cellsCreator = (rows, columns) => {
   return cells;
 }
 
-export const getAverageValues = (array) => {
+export const getAverageValues = (array: Cell[][]) => {
   if (array.length) {
     let row = [];
     for (let i = 0; i < array[0].length; i++) {
@@ -54,7 +55,7 @@ export const getAverageValues = (array) => {
   }
 };
 
-export const findClosest = (array, target, numberOfClosest) => {
+export const findClosest = (array: Cell[][], target: Cell, numberOfClosest: number) => {
   const arr = array.flat()
   arr.sort((a, b) => a.amount - b.amount)
   const targetIndex = arr.indexOf(target)
@@ -69,7 +70,7 @@ export const findClosest = (array, target, numberOfClosest) => {
     return [...arr].splice(targetIndex - gap, numberOfClosest)
   } else {
     const closest = [...arr].splice(targetIndex - Math.ceil(gap), numberOfClosest + 1);
-    if (Math.abs(target.amount - closest[0].amount) > Math.abs(target.amount - closest[closest.length - 1])) {
+    if (Math.abs(target.amount - closest[0].amount) > Math.abs(target.amount - closest[closest.length - 1].amount)) {
       closest.shift()
       return closest
     } else {

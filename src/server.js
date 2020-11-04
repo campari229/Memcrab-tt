@@ -1,14 +1,14 @@
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from './client/App.jsx';
+import App from './client/App.tsx';
 import { Provider } from 'react-redux';
 import { reducer } from '../src/client/store/store.js';
 import { createStore } from 'redux';
 import { StaticRouter } from "react-router-dom"
 
 
-import { getAverageValues, cellsCreator } from './client/lib/lib.js';
+import { getAverageValues, cellsCreator } from './client/lib/lib.ts';
 
 const port = 3000;
 const server = express();

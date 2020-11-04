@@ -9,7 +9,8 @@ import {
   percentsToggle,
   showClosest
 } from '../../store/store';
-import { rowCreator } from '../../lib/lib.js';
+import { rowCreator } from '../../lib/lib';
+import { Cell } from '../../../Interfaces'
 
 import './Matrix.scss';
 
@@ -22,7 +23,7 @@ export const Matrix = () => {
     return (
       <table className="table">
         <tbody className="table__body">
-          {cells.map((row, i)=> (
+          {cells.map((row: Cell[], i: number)=> (
             <tr className="table__row" key={i}>
               <td className="table__button-wrapper">
                 <button className="table__button-remove" onClick={() => dispatch(removeRow(i))}>Remove row</button>
@@ -63,7 +64,7 @@ export const Matrix = () => {
         </tbody>
         <tfoot className="table__footer">
           <tr className ="table__row-footer">
-            {tableFooter.map(cell => (
+            {tableFooter.map((cell: Cell) => (
               <td key={cell.id} className="table__cell-avarange">
                 {cell.amount}
               </td>

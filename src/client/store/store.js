@@ -1,5 +1,5 @@
 import {createStore, AnyAction } from 'redux';
-import { getAverageValues, findClosest } from '../lib/lib.js';
+import { getAverageValues, findClosest } from '../lib/lib.ts';
 
 const SET_CELLS = 'SET_CELLS';
 const ADD_ROW = 'ADD_ROW';
@@ -131,7 +131,3 @@ export const reducer = (state, action) => {
       return state;
   }
 };
-
-// const store = createStore(reducer);
-
-// export default store;
