@@ -1,62 +1,54 @@
 import {createStore, AnyAction } from 'redux';
-import { getAverageValues, findClosest } from '../lib/lib.ts';
+import { getAverageValues, findClosest } from '../lib/lib';
+import { Cell } from '../../Interfaces';
+import { actions, ActionType } from './actions';
 
-const SET_CELLS = 'SET_CELLS';
-const ADD_ROW = 'ADD_ROW';
-const REMOVE_ROW = 'REMOVE_ROW';
-const INCREMENT = 'INCREMENT';
-const PERCENTS_TOGGLE = 'PERCENTS_TOGGLE';
-const SET_NUMBER_OF_CLOSEST = 'SET_NUMBER_OF_CLOSEST';
-const SHOW_CLOSEST = 'SHOW_CLOSEST';
-
-export const setCells = (cells) => ({
-  type: SET_CELLS,
+export const setCells = (cells: Cell[][]) => ({
+  type: actions.SET_CELLS,
   cells,
 });
-export const addRow = (row) => ({
-  type: ADD_ROW,
+export const addRow = (row: Cell[]) => ({
+  type: actions.ADD_ROW,
   row,
 })
-export const removeRow = (number) => ({
-  type: REMOVE_ROW,
+export const removeRow = (number: number) => ({
+  type: actions.REMOVE_ROW,
   number,
 })
-export const increment = (id, rowIndex) => ({
-  type: INCREMENT,
+export const increment = (id: number, rowIndex: number) => ({
+  type: actions.INCREMENT,
   id,
   rowIndex,
 })
-export const percentsToggle = (rowIndex) => ({
-  type: PERCENTS_TOGGLE,
+export const percentsToggle = (rowIndex: number) => ({
+  type: actions.PERCENTS_TOGGLE,
   rowIndex,
 })
-export const showClosest = (target) => ({
-  type: SHOW_CLOSEST,
+export const showClosest = (target: Cell) => ({
+  type: actions.SHOW_CLOSEST,
   target,
 })
-export const setNumberOfClosest = (numberOfClosest) => ({
-  type: SET_NUMBER_OF_CLOSEST,
+export const setNumberOfClosest = (numberOfClosest: number) => ({
+  type: actions.SET_NUMBER_OF_CLOSEST,
   numberOfClosest,
 })
 
-export const getCells = (state) => state.cells;
-export const getTableFooter = (state) => state.tableFooter;
+export type State = {
+  cells: Cell[][];
+  tableFooter: Cell[];
+  numberOfClosest: number;
+};
 
-// type InitialState = {
-//   cells: Cell[][];
-//   tableFooter: Cell[];
-//   numberOfClosest: number;
-// };
+export const getCells = (state: State) => state.cells;
+export const getTableFooter = (state: State) => state.tableFooter;
 
-// const initialState = {
-//   cells: [],
-//   tableFooter: [],
-//   numberOfClosest: 0,
-// };
+const initialState = {
+  cells: [],
+  tableFooter: [],
+  numberOfClosest: 0,
+};
 
-
-
-export const reducer = (state, action) => {
+export const reducer = (state: State = initialState, action: ActionType) => {
   switch (action.type) {
     case 'SET_CELLS':
       return {
@@ -76,7 +68,7 @@ export const reducer = (state, action) => {
       };
 
     case 'REMOVE_ROW':
-      const filteredCells = state.cells.filter((row, index) => index !== action.number)
+      const filteredCells = state.cells.filter((row: Cell[], index: number) => index !== action.number)
       return {
         ...state,
         cells: filteredCells,
@@ -85,7 +77,7 @@ export const reducer = (state, action) => {
 
     case 'INCREMENT':
       const cells = [...state.cells]
-      const incrementedCell = cells[action.rowIndex].find(cell => cell.id === action.id);
+      const incrementedCell = cells[action.rowIndex].find((cell: Cell) => cell.id === action.id);
       if (incrementedCell) {
         incrementedCell.amount++;
       }
@@ -97,7 +89,7 @@ export const reducer = (state, action) => {
 
       case 'PERCENTS_TOGGLE':
         const percentsCells = [...state.cells]
-        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map(cell => ({
+        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map((cell: Cell) => ({
           ...cell,
           isPercentsShown: !cell.isPercentsShown
         }))
@@ -116,7 +108,7 @@ export const reducer = (state, action) => {
         const closest = findClosest(state.cells, action.target, state.numberOfClosest);
         const closestCells = [...state.cells];
         closestCells.forEach(row => {
-          row.forEach(cell => {
+          row.forEach((cell: Cell) => {
             if (closest.includes(cell)) {
               cell.isCloser = !cell.isCloser
             }

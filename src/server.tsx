@@ -1,21 +1,20 @@
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from './client/App.tsx';
+import App from './client/App';
 import { Provider } from 'react-redux';
-import { reducer } from '../src/client/store/store.js';
+import { reducer } from './client/store/store';
 import { createStore } from 'redux';
 import { StaticRouter } from "react-router-dom"
-
-
-import { getAverageValues, cellsCreator } from './client/lib/lib.ts';
+import { State } from './client/store/store'
+import { getAverageValues, cellsCreator } from './client/lib/lib';
 
 const port = 3000;
 const server = express();
 
 server.use(express.static('dist'));
 
-const htmlMaker = (body, state) => {
+const htmlMaker = (body: string, state: State) => {
   return  `
   <!DOCTYPE html>
   <html>
@@ -38,15 +37,23 @@ const htmlMaker = (body, state) => {
 }
 
 server.get('*', (req, res) => {
-  let preloadedState = {}
+  let preloadedState: State = {
+    cells: [],
+    numberOfClosest: 0,
+    tableFooter: []
+  }
   const params = req.path.match(/(?<=)\d+/gi)
 
   if (params && params.length === 3) {
     const data = req.path.match(/(?<=)\d+/gi);
-    preloadedState = {
-      cells: cellsCreator(data[1], data[0]),
-      numberOfClosest: data[2],
-      tableFooter: getAverageValues(cellsCreator(data[1], data[0]))
+    if (data) {
+      const cells = cellsCreator(Number(data[1]), Number(data[0]))
+
+      preloadedState = {
+        cells,
+        numberOfClosest: Number(data[2]),
+        tableFooter: getAverageValues(cells)
+      }
     }
   }
 
