@@ -1,7 +1,6 @@
 .table {
   margin: 100px auto;
   width: 95vw;
-  height: 95vh;
 
   &__cell {
     position: relative;
@@ -19,6 +18,11 @@
     height: 100px;
     box-sizing: border-box;
   };
+
+  &__body {
+    margin: 0 auto;
+    display: block;
+  }
 
   &__row {
     display: flex;

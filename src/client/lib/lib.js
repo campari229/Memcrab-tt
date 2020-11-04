@@ -6,49 +6,47 @@ const createRandomNumber = () => {
 };
 
 export const rowCreator = (columns) => {
-  const row = []
-  for (let i = 0; i < columns; i++) {
-    const amount = createRandomNumber()
-    row.push({
-      amount,
-      id: id,
+  const arr = new Array(columns).fill("#");
+  
+  const row = arr.map(() => {
+    return {
+      amount: createRandomNumber(),
+      id: id++,
       isPercentsShown: false,
-      isCloser: false,
-    });
-    id++;
-  }
+      isCloser: false
+    };
+  })
 
   return row;
 }
 
-
-
 export const cellsCreator = (rows, columns) => {
-  const cells = [];
+  const arr = new Array(rows).fill("#");
 
-  for (let i = 0; i < rows; i++) {
-    cells.push(rowCreator(columns))
-  }
+  const cells = arr.map(() => rowCreator(columns))
 
   return cells;
 }
 
 export const getAverageValues = (array) => {
+  console.log(array)
   if (array.length) {
-    let row = [];
-    for (let i = 0; i < array[0].length; i++) {
-      let sum = 0;
-      for (let j = 0; j < array.length; j++) {
-        sum += array[j][i].amount
-      }
-      row.push({
-        amount: Math.round(sum / array.length),
-        id
-      });
+    let res = array.reduce((acumulator, row, i) => {
+      let avarageValue = 0;
+      row.forEach((cell, index) => {
+        avarageValue += array[index][i].amount;
+      })
 
-      id++;
-    }
-    return row
+      return [
+        ...acumulator,
+        {
+          amount: Math.round(avarageValue / array.length),
+          id: id++
+        }
+      ]
+    }, [])
+
+    return res;
   } else {
     return [];
   }

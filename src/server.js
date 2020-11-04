@@ -27,10 +27,7 @@ const htmlMaker = (body, state) => {
     <body style="margin:0">
       <div id="app">${body}</div>
       <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(
-            /</g,
-            '\\u003c'
-          )}
+          window.__PRELOADED_STATE__ = ${JSON.stringify(state)}
       </script>
     </body>
   </html>
@@ -42,7 +39,7 @@ server.get('*', (req, res) => {
   const params = req.path.match(/(?<=)\d+/gi)
 
   if (params && params.length === 3) {
-    const data = req.path.match(/(?<=)\d+/gi);
+    const data = req.path.match(/(?<=)\d+/gi).map((param) => Number(param));
     preloadedState = {
       cells: cellsCreator(data[1], data[0]),
       numberOfClosest: data[2],
