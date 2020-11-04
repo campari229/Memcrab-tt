@@ -1,47 +1,47 @@
 {
-  "homepage": "http://campari229.github.io/Memcrab-tt",
-  "name": "memcrab-tt",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.2",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-redux": "^7.1.9",
-    "gh-pages": "^3.1.0",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.1",
-    "react-scripts": "3.4.3",
-    "redux": "^4.0.5",
-    "typescript": "^4.0.3"
-  },
+  "name": "memcrab-ssr-tt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "client": "webpack --config ./webpack.config.client.js --mode development",
+    "start": "node ./dist/server",
+    "server": "webpack --mode development",
+    "build": "npm run server & npm run client"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.11.1",
+    "css-loader": "^5.0.0",
+    "isomorphic-style-loader": "^5.1.0",
+    "mini-css-extract-plugin": "^1.2.1",
+    "postcss-loader": "^4.0.4",
+    "prop-types": "^15.7.2",
+    "sass-loader": "^10.0.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^1.7.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "dependencies": {
+    "@material-ui/styles": "^4.10.0",
+    "@react-navigation/native": "^5.8.2",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.14.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^7.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "sass": "^1.28.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

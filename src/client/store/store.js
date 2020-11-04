@@ -1,6 +1,5 @@
 import {createStore, AnyAction } from 'redux';
-import { Cell } from '../Interfaces';
-import { getAverageValues, findClosest } from '../lib/Helpers';
+import { getAverageValues, findClosest } from '../lib/lib.js';
 
 const SET_CELLS = 'SET_CELLS';
 const ADD_ROW = 'ADD_ROW';
@@ -10,54 +9,54 @@ const PERCENTS_TOGGLE = 'PERCENTS_TOGGLE';
 const SET_NUMBER_OF_CLOSEST = 'SET_NUMBER_OF_CLOSEST';
 const SHOW_CLOSEST = 'SHOW_CLOSEST';
 
-export const setCells = (cells: Cell[][]) => ({
+export const setCells = (cells) => ({
   type: SET_CELLS,
   cells,
 });
-export const addRow = (row: Cell[]) => ({
+export const addRow = (row) => ({
   type: ADD_ROW,
   row,
 })
-export const removeRow = (number: number) => ({
+export const removeRow = (number) => ({
   type: REMOVE_ROW,
   number,
 })
-export const increment = (id: number, rowIndex: number) => ({
+export const increment = (id, rowIndex) => ({
   type: INCREMENT,
   id,
   rowIndex,
 })
-export const percentsToggle = (rowIndex: number) => ({
+export const percentsToggle = (rowIndex) => ({
   type: PERCENTS_TOGGLE,
   rowIndex,
 })
-export const showClosest = (target: Cell) => ({
+export const showClosest = (target) => ({
   type: SHOW_CLOSEST,
   target,
 })
-export const setNumberOfClosest = (numberOfClosest: number) => ({
+export const setNumberOfClosest = (numberOfClosest) => ({
   type: SET_NUMBER_OF_CLOSEST,
   numberOfClosest,
 })
 
-export const getCells = (state: InitialState) => state.cells;
-export const getTableFooter = (state: InitialState) => state.tableFooter;
+export const getCells = (state) => state.cells;
+export const getTableFooter = (state) => state.tableFooter;
 
-type InitialState = {
-  cells: Cell[][];
-  tableFooter: Cell[];
-  numberOfClosest: number;
-};
+// type InitialState = {
+//   cells: Cell[][];
+//   tableFooter: Cell[];
+//   numberOfClosest: number;
+// };
 
-const initialState = {
-  cells: [],
-  tableFooter: [],
-  numberOfClosest: 0,
-};
+// const initialState = {
+//   cells: [],
+//   tableFooter: [],
+//   numberOfClosest: 0,
+// };
 
 
 
-const reducer = (state: InitialState = initialState, action: AnyAction ) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_CELLS':
       return {
@@ -133,6 +132,6 @@ const reducer = (state: InitialState = initialState, action: AnyAction ) => {
   }
 };
 
-const store = createStore(reducer);
+// const store = createStore(reducer);
 
-export default store;
+// export default store;
