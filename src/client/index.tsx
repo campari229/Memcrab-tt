@@ -9,11 +9,11 @@ import { State } from './store/store';
 
 declare global {
   interface Window {
-    preloadedState: State;
+    __PRELOADED_STATE__: State;
   }
 }
 
-const preloadedState: State = (window as any).window.__PRELOADED_STATE__
+const preloadedState: State = window.__PRELOADED_STATE__
 
 const store = createStore(reducer, preloadedState)
 

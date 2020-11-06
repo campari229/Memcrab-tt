@@ -2,70 +2,63 @@ import { Cell } from '../../Interfaces';
 
 let id = 1;
 
-const createRandomNumber = () => {
+export const createRandomNumber = () => {
   return Math.floor(Math.random() * (900) + 100);
 };
 
 export const rowCreator = (columns: number) => {
-  const row = []
-  for (let i = 0; i < columns; i++) {
-    const amount = createRandomNumber()
-    row.push({
-      amount,
-      id: id,
+  const arr = new Array(columns).fill("#");
+  
+  const row = arr.map(() => {
+    return {
+      amount: createRandomNumber(),
+      id: id++,
       isPercentsShown: false,
-      isCloser: false,
-    });
-    id++;
-  }
+      isCloser: false
+    };
+  })
 
   return row;
 }
 
-
-
 export const cellsCreator = (rows: number, columns: number) => {
-  const cells = [];
+  const arr = new Array(rows).fill("#");
 
-  for (let i = 0; i < rows; i++) {
-    cells.push(rowCreator(columns))
-  }
+  const cells = arr.map(() => rowCreator(columns))
 
   return cells;
 }
 
 export const getAverageValues = (array: Cell[][]) => {
   if (array.length) {
-    let row = [];
-    for (let i = 0; i < array[0].length; i++) {
+    const tempoArr = new Array(array[0].length).fill(0);
+    const res = tempoArr.map((cell, i) => {
       let sum = 0;
-      for (let j = 0; j < array.length; j++) {
-        sum += array[j][i].amount
-      }
-      row.push({
+      array.forEach(item => {
+        sum += item[i].amount
+      })
+      return ({
         amount: Math.round(sum / array.length),
-        id
-      });
-
-      id++;
-    }
-    return row
+        id: id++
+      })
+    })
+    return res;
   } else {
     return [];
   }
 };
 
 export const findClosest = (array: Cell[][], target: Cell, numberOfClosest: number) => {
-  const arr = array.flat()
+  let arr = array.flat()
   arr.sort((a, b) => a.amount - b.amount)
   const targetIndex = arr.indexOf(target)
   const gap = numberOfClosest / 2;
-  arr.filter(item => item.id !== target.id)
+  arr = arr.filter(item => item.id !== target.id)
   
   if (targetIndex - gap < 0) {
     return [...arr].splice(0, numberOfClosest)
   } else if (targetIndex + gap > arr.length) {
-    return [...arr].splice(-(arr.length - 1), numberOfClosest)
+    return [...arr].splice((arr.length) - numberOfClosest, numberOfClosest)
   } else if (numberOfClosest % 2 === 0) {
     return [...arr].splice(targetIndex - gap, numberOfClosest)
   } else {
