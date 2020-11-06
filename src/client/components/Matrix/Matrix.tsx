@@ -19,65 +19,63 @@ export const Matrix = () => {
   const cells = useSelector(getCells);
   const tableFooter = useSelector(getTableFooter);
 
-  if (cells) {
-    return (
-      <table className="table">
-        <tbody className="table__body">
-          {cells.map((row: Cell[], i: number)=> (
-            <tr className="table__row" key={i}>
-              <td className="table__button-wrapper">
-                <button className="table__button-remove" onClick={() => dispatch(removeRow(i))}>Remove row</button>
-              </td>
-              {row.map(cell => (
-                <td
-                  key={cell.id}
-                  onClick={() => dispatch(increment(cell.id, i))}
-                  onMouseOver={() => dispatch(showClosest(cell))}
-                  onMouseOut={() => dispatch(showClosest(cell))}
-                  className={cell.isCloser ? 'table__cell table__cell-closest' : 'table__cell'}
-                >
-                  <p className="table__text">
-                    {cell.isPercentsShown
-                      ? `${Math.round((cell.amount / row.reduce((acumulator, cell) => acumulator + cell.amount, 0)) * 100)}%`
-                      : cell.amount
-                    }
-                  </p>
-                  <div
-                    className="table__percents"
-                    style={
-                      cell.isPercentsShown
-                        ? {height: `${Math.round((cell.amount / row.reduce((acumulator, cell) => acumulator + cell.amount, 0)) * 100)}%`, backgroundColor: "red"}
-                        : {height: "0"}
-                    }
-                  />
-                </td>
-              ))}
+  return (
+    <table className="table">
+      <tbody className="table__body">
+        {cells.map((row: Cell[], i: number)=> (
+          <tr className="table__row" key={i}>
+            <td className="table__button-wrapper">
+              <button className="table__button-remove" id={`remove-btn${i}`} onClick={() => dispatch(removeRow(i))}>Remove row</button>
+            </td>
+            {row.map((cell, index) => (
               <td
-                className="table__cell"
-                onMouseOver={() => dispatch(percentsToggle(i))}
-                onMouseOut={() => dispatch(percentsToggle(i))}
+                key={cell.id}
+                id={`${i}-${index}`}
+                onClick={() => dispatch(increment(cell.id, i))}
+                onMouseOver={() => dispatch(showClosest(cell))}
+                onMouseOut={() => dispatch(showClosest(cell))}
+                className={cell.isCloser ? 'table__cell table__cell-closest' : 'table__cell'}
               >
-                {row.reduce((acumulator, cell) => acumulator + cell.amount, 0)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        <tfoot className="table__footer">
-          <tr className ="table__row-footer">
-            {tableFooter.map((cell: Cell) => (
-              <td key={cell.id} className="table__cell-avarange">
-                {cell.amount}
+                <p className="table__text" id={`text:${i}-${index}`}>
+                  {cell.isPercentsShown
+                    ? `${Math.round((cell.amount / row.reduce((acumulator, cell) => acumulator + cell.amount, 0)) * 100)}%`
+                    : cell.amount
+                  }
+                </p>
+                <div
+                  className="table__percents"
+                  style={
+                    cell.isPercentsShown
+                      ? {height: `${Math.round((cell.amount / row.reduce((acumulator, cell) => acumulator + cell.amount, 0)) * 100)}%`, backgroundColor: "red"}
+                      : {height: "0"}
+                  }
+                />
               </td>
             ))}
-            <td className="table__button-wrapper">
-              <button className="table__button-new" onClick={() => dispatch(addRow(rowCreator(cells[0].length)))}>add row</button>
+            <td
+              id={`percents${i}`}
+              className="table__cell"
+              onMouseOver={() => dispatch(percentsToggle(i))}
+              onMouseOut={() => dispatch(percentsToggle(i))}
+            >
+              {row.reduce((acumulator, cell) => acumulator + cell.amount, 0)}
             </td>
           </tr>
-        </tfoot>
-      </table>
-    )
-  } else {
-    return <h2>oops</h2>
-  }
+        ))}
+      </tbody>
+      <tfoot className="table__footer">
+        <tr className ="table__row-footer">
+          {tableFooter.map((cell: Cell) => (
+            <td key={cell.id} className="table__cell-avarange">
+              {cell.amount}
+            </td>
+          ))}
+          <td className="table__button-wrapper">
+            <button id={`add-button`} className="table__button-new" onClick={() => dispatch(addRow(rowCreator(cells[0].length)))}>add row</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  )
 }
 

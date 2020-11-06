@@ -1,0 +1,461 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`form methods sould work correct closest input test 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <h1>
+    Matrix Maker
+  </h1>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of rows
+      <input
+        className="form__input"
+        name="rows"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error row-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of rows
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of columns
+      <input
+        className="form__input"
+        name="columns"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of columns
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of closest cells to shown
+      <input
+        className="form__input"
+        id="closest"
+        name="closest"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error closest-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of closest cells to shown (min: 1, max: columns * rows)
+    </p>
+  </div>
+  <button
+    className="form__button"
+  >
+    Make a matrix
+  </button>
+</form>
+`;
+
+exports[`form methods sould work correct columns input test 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <h1>
+    Matrix Maker
+  </h1>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of rows
+      <input
+        className="form__input"
+        name="rows"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error row-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of rows
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of columns
+      <input
+        className="form__input"
+        name="columns"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of columns
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of closest cells to shown
+      <input
+        className="form__input"
+        id="closest"
+        name="closest"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error closest-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of closest cells to shown (min: 1, max: columns * rows)
+    </p>
+  </div>
+  <button
+    className="form__button"
+  >
+    Make a matrix
+  </button>
+</form>
+`;
+
+exports[`form methods sould work correct form submit test with valid inputs 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <h1>
+    Matrix Maker
+  </h1>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of rows
+      <input
+        className="form__input"
+        name="rows"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error row-error"
+      style={
+        Object {
+          "opacity": "1",
+        }
+      }
+    >
+      Enter a number of rows
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of columns
+      <input
+        className="form__input"
+        name="columns"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error"
+      style={
+        Object {
+          "opacity": "1",
+        }
+      }
+    >
+      Enter a number of columns
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of closest cells to shown
+      <input
+        className="form__input"
+        id="closest"
+        name="closest"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error closest-error"
+      style={
+        Object {
+          "opacity": "1",
+        }
+      }
+    >
+      Enter a number of closest cells to shown (min: 1, max: columns * rows)
+    </p>
+  </div>
+  <button
+    className="form__button"
+  >
+    Make a matrix
+  </button>
+</form>
+`;
+
+exports[`form methods sould work correct initial render test 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <h1>
+    Matrix Maker
+  </h1>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of rows
+      <input
+        className="form__input"
+        name="rows"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error row-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of rows
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of columns
+      <input
+        className="form__input"
+        name="columns"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of columns
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of closest cells to shown
+      <input
+        className="form__input"
+        id="closest"
+        name="closest"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error closest-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of closest cells to shown (min: 1, max: columns * rows)
+    </p>
+  </div>
+  <button
+    className="form__button"
+  >
+    Make a matrix
+  </button>
+</form>
+`;
+
+exports[`form methods sould work correct rows input test 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <h1>
+    Matrix Maker
+  </h1>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of rows
+      <input
+        className="form__input"
+        name="rows"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error row-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of rows
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of columns
+      <input
+        className="form__input"
+        name="columns"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of columns
+    </p>
+  </div>
+  <div
+    className="form__input-wrapper"
+  >
+    <label
+      className="form__label"
+    >
+      Number of closest cells to shown
+      <input
+        className="form__input"
+        id="closest"
+        name="closest"
+        onChange={[Function]}
+        type="text"
+      />
+    </label>
+    <p
+      className="form__error closest-error"
+      style={
+        Object {
+          "opacity": "0",
+        }
+      }
+    >
+      Enter a number of closest cells to shown (min: 1, max: columns * rows)
+    </p>
+  </div>
+  <button
+    className="form__button"
+  >
+    Make a matrix
+  </button>
+</form>
+`;

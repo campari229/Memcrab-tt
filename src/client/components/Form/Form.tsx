@@ -12,7 +12,7 @@ export const Form = () => {
 
 
   const rowsAndColumnsValidation = (inputValue: string) => {
-    if (inputValue && typeof Number(inputValue) === 'number') {
+    if (inputValue && Number(inputValue) === Number(inputValue)) {
       return true;
     } else {
       return false;
@@ -57,7 +57,7 @@ export const Form = () => {
               onChange={(e) => setRowsInputValue(e.target.value)}
             />
           </label>
-          <p className="form__error" style={rowsIsValid ? { opacity: '0' } : {opacity: '1'}}>
+          <p className="form__error row-error" style={rowsIsValid ? { opacity: '0' } : {opacity: '1'}}>
             Enter a number of rows
           </p>
        </div>
@@ -86,7 +86,7 @@ export const Form = () => {
               onChange={(e) => setClosestInputValue(e.target.value)}
             />
           </label>
-          <p className="form__error" style={closestIsValid ? { opacity: '0' } : {opacity: '1'}}>
+          <p className="form__error closest-error" style={closestIsValid ? { opacity: '0' } : {opacity: '1'}}>
             Enter a number of closest cells to shown (min: 1, max: columns * rows)
           </p>
        </div>
