@@ -1,4 +1,4 @@
-import { Cell } from '../../Interfaces';
+import { CellInterface } from '../../Interfaces';
 
 export const actions = {
   SET_CELLS: 'SET_CELLS',
@@ -12,12 +12,12 @@ export const actions = {
 
 interface SetCells {
   type: typeof actions.SET_CELLS;
-  cells: Cell[][];
+  cells: CellInterface[][];
 }
 
 interface AddRow {
   type: typeof actions.ADD_ROW;
-  row: Cell[]
+  row: CellInterface[]
 }
 
 interface RemoveRow {
@@ -38,7 +38,7 @@ interface PercentsToggle {
 
 interface ShowClosest {
   type: typeof actions.SHOW_CLOSEST;
-  target: Cell;
+  targetId: number;
 }
 
 interface SetNumberOfClosest {

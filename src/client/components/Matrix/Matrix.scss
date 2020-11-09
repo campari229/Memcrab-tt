@@ -1,7 +1,6 @@
 .table {
   margin: 100px auto;
   width: 95vw;
-  height: 95vh;
 
   &__cell {
     position: relative;
@@ -11,14 +10,20 @@
     display: block;
     line-height: 80px;
 
-    border: 10px solid #fff;
+    // border: 10px solid #fff;
+    margin: 10px 10px 0 0;
     background-color: black;
     color: #fff;
     text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     box-sizing: border-box;
   };
+
+  &__body {
+    margin: 0 auto;
+    display: block;
+  }
 
   &__row {
     display: flex;
@@ -34,12 +39,12 @@
   }
 
   &__cell-avarange {
-    border: 10px solid #fff;
+    margin: 10px 10px 0 0;
     background-color: black;
     color: #fff;
     text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     box-sizing: border-box;
     display: block;
     line-height: 80px;

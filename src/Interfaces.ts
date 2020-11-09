@@ -1,4 +1,4 @@
-export interface Cell {
+export interface CellInterface {
   amount: number;
   id: number;
   isPercentsShown?: boolean,
@@ -7,12 +7,12 @@ export interface Cell {
 
 interface SetCells {
   type: string;
-  cells: Cell;
+  cells: CellInterface;
 }
 
 interface AddRow {
   type: string;
-  row: Cell[]
+  row: CellInterface[]
 }
 
 interface RemoveRow {
@@ -33,7 +33,7 @@ interface PercentsToggle {
 
 interface ShowClosest {
   type: string;
-  target: Cell;
+  target: CellInterface;
 }
 
 interface SetNumberOfClosest {

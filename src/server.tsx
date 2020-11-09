@@ -26,10 +26,7 @@ const htmlMaker = (body: string, state: State) => {
     <body style="margin:0">
       <div id="app">${body}</div>
       <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(
-            /</g,
-            '\\u003c'
-          )}
+          window.__PRELOADED_STATE__ = ${JSON.stringify(state)}
       </script>
     </body>
   </html>

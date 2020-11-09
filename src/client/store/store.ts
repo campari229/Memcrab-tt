@@ -1,13 +1,13 @@
 import {createStore, AnyAction } from 'redux';
 import { getAverageValues, findClosest } from '../lib/lib';
-import { Cell } from '../../Interfaces';
+import { CellInterface } from '../../Interfaces';
 import { actions, ActionType } from './actions';
 
-export const setCells = (cells: Cell[][]) => ({
+export const setCells = (cells: CellInterface[][]) => ({
   type: actions.SET_CELLS,
   cells,
 });
-export const addRow = (row: Cell[]) => ({
+export const addRow = (row: CellInterface[]) => ({
   type: actions.ADD_ROW,
   row,
 })
@@ -24,9 +24,9 @@ export const percentsToggle = (rowIndex: number) => ({
   type: actions.PERCENTS_TOGGLE,
   rowIndex,
 })
-export const showClosest = (target: Cell) => ({
+export const showClosest = (targetId: number) => ({
   type: actions.SHOW_CLOSEST,
-  target,
+  targetId,
 })
 export const setNumberOfClosest = (numberOfClosest: number) => ({
   type: actions.SET_NUMBER_OF_CLOSEST,
@@ -34,8 +34,8 @@ export const setNumberOfClosest = (numberOfClosest: number) => ({
 })
 
 export type State = {
-  cells: Cell[][];
-  tableFooter: Cell[];
+  cells: CellInterface[][];
+  tableFooter: CellInterface[];
   numberOfClosest: number;
 };
 
@@ -105,7 +105,7 @@ export const reducer = (state: State = initialState, action: ActionType) => {
         }
 
       case 'SHOW_CLOSEST':
-        const closest = findClosest(state.cells, action.target, state.numberOfClosest);
+        const closest = findClosest(state.cells, action.targetId, state.numberOfClosest);
         const closestCells = [...state.cells];
         closestCells.forEach(row => {
           row.forEach((cell) => {
