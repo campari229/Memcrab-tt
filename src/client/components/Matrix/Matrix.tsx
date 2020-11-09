@@ -10,7 +10,6 @@ import {
   showClosest
 } from '../../store/store';
 import { rowCreator } from '../../lib/lib';
-import { Cell } from '../../../Interfaces'
 
 import './Matrix.scss';
 
