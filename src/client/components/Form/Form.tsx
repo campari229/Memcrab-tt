@@ -1,18 +1,15 @@
-import React, {useState, SyntheticEvent} from 'react';
-import { useDispatch } from 'react-redux';
-import { cellsCreator } from '../../lib/Helpers';
-import { setCells, setNumberOfClosest } from '../../store/store';
+import React, { useState, SyntheticEvent } from 'react';
 
 import './Form.scss';
 
-export const Form: React.FC = () => {
+export const Form = () => {
   const [rowsInputValue, setRowsInputValue] = useState('');
   const [rowsIsValid, setRowsIsValid] = useState(true);
   const [columnsInputValue, setColumnsInputValue] = useState('');
   const [columnsIsValid, setColumnsIsValid] = useState(true);
   const [closestInputValue, setClosestInputValue] = useState('');
   const [closestIsValid, setClosestIsValid] = useState(true);
-  const dispatch = useDispatch();
+
 
   const rowsAndColumnsValidation = (inputValue: string) => {
     if (inputValue && typeof Number(inputValue) === 'number') {
@@ -22,7 +19,7 @@ export const Form: React.FC = () => {
     }
   }
 
-  const closestValidation = (value:string) => {
+  const closestValidation = (value: string) => {
     if (rowsInputValue && columnsInputValue) {
       if (Number(value) <= Number(rowsInputValue) * Number(columnsInputValue)) {
         return true;
@@ -37,8 +34,7 @@ export const Form: React.FC = () => {
 
     if (rowsAndColumnsValidation(rowsInputValue) && rowsAndColumnsValidation(columnsInputValue)) {
       if (closestValidation(closestInputValue)) {
-        dispatch(setCells(cellsCreator(Number(rowsInputValue), Number(columnsInputValue))))
-        dispatch(setNumberOfClosest(Number(closestInputValue)))
+        location.assign(`http://localhost:3000/columns=${columnsInputValue}/rows=${rowsInputValue}/closest=${closestInputValue}`);
       } else {
         setClosestIsValid(false);
       }
@@ -49,7 +45,7 @@ export const Form: React.FC = () => {
   }
 
    return (
-     <form className="form" onSubmit={makeMatrix}>
+     <form className="form" onSubmit={makeMatrix} >
        <h1>Matrix Maker</h1>
        <div className="form__input-wrapper">
           <label className="form__label">
@@ -85,6 +81,7 @@ export const Form: React.FC = () => {
             <input
               type="text"
               id="closest"
+              name="closest"
               className="form__input"
               onChange={(e) => setClosestInputValue(e.target.value)}
             />
@@ -97,3 +94,4 @@ export const Form: React.FC = () => {
      </form>
    )
 }
+ 

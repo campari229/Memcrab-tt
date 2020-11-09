@@ -1,53 +1,46 @@
 import {createStore, AnyAction } from 'redux';
-import { Cell } from '../Interfaces';
-import { getAverageValues, findClosest } from '../lib/Helpers';
-
-const SET_CELLS = 'SET_CELLS';
-const ADD_ROW = 'ADD_ROW';
-const REMOVE_ROW = 'REMOVE_ROW';
-const INCREMENT = 'INCREMENT';
-const PERCENTS_TOGGLE = 'PERCENTS_TOGGLE';
-const SET_NUMBER_OF_CLOSEST = 'SET_NUMBER_OF_CLOSEST';
-const SHOW_CLOSEST = 'SHOW_CLOSEST';
+import { getAverageValues, findClosest } from '../lib/lib';
+import { Cell } from '../../Interfaces';
+import { actions, ActionType } from './actions';
 
 export const setCells = (cells: Cell[][]) => ({
-  type: SET_CELLS,
+  type: actions.SET_CELLS,
   cells,
 });
 export const addRow = (row: Cell[]) => ({
-  type: ADD_ROW,
+  type: actions.ADD_ROW,
   row,
 })
 export const removeRow = (number: number) => ({
-  type: REMOVE_ROW,
+  type: actions.REMOVE_ROW,
   number,
 })
 export const increment = (id: number, rowIndex: number) => ({
-  type: INCREMENT,
+  type: actions.INCREMENT,
   id,
   rowIndex,
 })
 export const percentsToggle = (rowIndex: number) => ({
-  type: PERCENTS_TOGGLE,
+  type: actions.PERCENTS_TOGGLE,
   rowIndex,
 })
 export const showClosest = (target: Cell) => ({
-  type: SHOW_CLOSEST,
+  type: actions.SHOW_CLOSEST,
   target,
 })
 export const setNumberOfClosest = (numberOfClosest: number) => ({
-  type: SET_NUMBER_OF_CLOSEST,
+  type: actions.SET_NUMBER_OF_CLOSEST,
   numberOfClosest,
 })
 
-export const getCells = (state: InitialState) => state.cells;
-export const getTableFooter = (state: InitialState) => state.tableFooter;
-
-type InitialState = {
+export type State = {
   cells: Cell[][];
   tableFooter: Cell[];
   numberOfClosest: number;
 };
+
+export const getCells = (state: State) => state.cells;
+export const getTableFooter = (state: State) => state.tableFooter;
 
 const initialState = {
   cells: [],
@@ -55,9 +48,7 @@ const initialState = {
   numberOfClosest: 0,
 };
 
-
-
-const reducer = (state: InitialState = initialState, action: AnyAction ) => {
+export const reducer = (state: State = initialState, action: ActionType) => {
   switch (action.type) {
     case 'SET_CELLS':
       return {
@@ -86,7 +77,7 @@ const reducer = (state: InitialState = initialState, action: AnyAction ) => {
 
     case 'INCREMENT':
       const cells = [...state.cells]
-      const incrementedCell = cells[action.rowIndex].find(cell => cell.id === action.id);
+      const incrementedCell = cells[action.rowIndex].find((cell) => cell.id === action.id);
       if (incrementedCell) {
         incrementedCell.amount++;
       }
@@ -98,7 +89,7 @@ const reducer = (state: InitialState = initialState, action: AnyAction ) => {
 
       case 'PERCENTS_TOGGLE':
         const percentsCells = [...state.cells]
-        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map(cell => ({
+        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map((cell) => ({
           ...cell,
           isPercentsShown: !cell.isPercentsShown
         }))
@@ -117,7 +108,7 @@ const reducer = (state: InitialState = initialState, action: AnyAction ) => {
         const closest = findClosest(state.cells, action.target, state.numberOfClosest);
         const closestCells = [...state.cells];
         closestCells.forEach(row => {
-          row.forEach(cell => {
+          row.forEach((cell) => {
             if (closest.includes(cell)) {
               cell.isCloser = !cell.isCloser
             }
@@ -132,7 +123,3 @@ const reducer = (state: InitialState = initialState, action: AnyAction ) => {
       return state;
   }
 };
-
-const store = createStore(reducer);
-
-export default store;
