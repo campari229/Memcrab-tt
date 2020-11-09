@@ -30,9 +30,9 @@ export const percentsToggle = (rowIndex) => ({
   type: PERCENTS_TOGGLE,
   rowIndex,
 })
-export const showClosest = (target) => ({
+export const showClosest = (targetId) => ({
   type: SHOW_CLOSEST,
-  target,
+  targetId,
 })
 export const setNumberOfClosest = (numberOfClosest) => ({
   type: SET_NUMBER_OF_CLOSEST,
@@ -113,7 +113,7 @@ export const reducer = (state, action) => {
         }
 
       case 'SHOW_CLOSEST':
-        const closest = findClosest(state.cells, action.target, state.numberOfClosest);
+        const closest = findClosest(state.cells, action.targetId, state.numberOfClosest);
         const closestCells = [...state.cells];
         closestCells.forEach(row => {
           row.forEach(cell => {

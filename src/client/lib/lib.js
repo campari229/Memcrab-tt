@@ -12,9 +12,7 @@ const createRandomNumber = () => {
 };
 
 export const rowCreator = (columns) => {
-  const arr = new Array(columns).fill("#");
-  
-  const row = arr.map(() => {
+  return Array.from({length: columns}, () => {
     return {
       amount: createRandomNumber(),
       id: id(),
@@ -22,53 +20,48 @@ export const rowCreator = (columns) => {
       isCloser: false
     };
   })
-
-  return row;
 }
 
 export const cellsCreator = (rows, columns) => {
-  const arr = new Array(rows).fill("#");
-
-  const cells = arr.map(() => rowCreator(columns))
-
-  return cells;
+  return Array.from({length: rows}, () => rowCreator(columns))
 }
 
 export const getAverageValues = (array) => {
   if (array.length) {
-    const tempoArr = new Array(array[0].length);
-    let index = 0;
-    const res = Array.from(tempoArr, () => {
-      const sum = array.reduce((acumulator, item) => {
-        return acumulator += item[index].amount
+    return array.reduce((acumulator, row, rowIndex) => {
+      const rowSum = row.reduce((acumulator, cell, cellIndex) => {
+        return acumulator += array[cellIndex][rowIndex].amount;
       }, 0)
 
-      index++;
-      return ({
-        amount: Math.round(sum / array.length),
-        id: id(),
-      })
-    })
-    return res;
+      return [
+        ...acumulator,
+        {
+          amount: Math.round(rowSum / row.length),
+          id: id(),
+        }
+      ]
+    }, [])
   } else {
     return [];
   }
 };
 
-export const findClosest = (array, target, numberOfClosest) => {
-  let arr = array.flat()
+export const findClosest = (array, targetId, numberOfClosest) => {
+  const arr = array.flat()
   arr.sort((a, b) => a.amount - b.amount)
+  const target = arr.find(item => item.id === targetId)
   const targetIndex = arr.indexOf(target)
+  const arrayWithoutTarget = arr.filter(item => item.id !== target.id)
   const gap = numberOfClosest / 2;
   
   if (targetIndex - gap < 0) {
-    return arr.slice(0, numberOfClosest).filter(item => item.id !== target.id)
+    return arrayWithoutTarget.slice(0, numberOfClosest)
   } else if (targetIndex + gap > arr.length) {
-    return arr.slice((arr.length - 1) - numberOfClosest).filter(item => item.id !== target.id)
+    return arrayWithoutTarget.slice((arr.length - 1) - numberOfClosest)
   } else if (numberOfClosest % 2 === 0) {
-    return arr.slice(targetIndex - gap, targetIndex + gap).filter(item => item.id !== target.id)
+    return arrayWithoutTarget.slice(targetIndex - gap, targetIndex + gap)
   } else {
-    const closest = arr.slice(targetIndex - Math.ceil(gap), targetIndex + Math.ceil(gap)).filter(item => item.id !== target.id);
+    const closest = arrayWithoutTarget.slice(targetIndex - Math.ceil(gap), targetIndex + Math.ceil(gap))
     if (Math.abs(target.amount - closest[0].amount) > Math.abs(target.amount - closest[closest.length - 1].amount)) {
       closest.shift()
       return closest
