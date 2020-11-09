@@ -1,14 +1,33 @@
 .table {
-  &__body {
-    transform: translateX(-100px);
-  };
+  margin: 100px auto;
+  width: 95vw;
 
   &__cell {
     position: relative;
     box-sizing: border-box;
     transition: transform 0.5s, background-color 0.5s;
     cursor: pointer;
+    display: block;
+    line-height: 80px;
+
+    // border: 10px solid #fff;
+    margin: 10px 10px 0 0;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
   };
+
+  &__body {
+    margin: 0 auto;
+    display: block;
+  }
+
+  &__row {
+    display: flex;
+  }
 
   &__cell:active {
     transform: scale(0.9);
@@ -17,6 +36,23 @@
   &__cell-closest {
     background-color: green;
     transform: scale(1.1);
+  }
+
+  &__cell-avarange {
+    margin: 10px 10px 0 0;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    display: block;
+    line-height: 80px;
+  }
+
+  &__row-footer {
+    transform: translateX(70px);
+    display: flex;
   }
 
   &__text {
@@ -44,11 +80,16 @@
 
   &__button-wrapper {
     background-color: #fff;
+    display: flex;
   }
 
   &__button-remove {
     background-color: black;
     color: #fff;
+
+    width: 70px;
+    height: 50px;
+    margin: auto;
 
     border-radius: 0 50% 50% 0;
     cursor: pointer;
