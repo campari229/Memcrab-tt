@@ -68,7 +68,7 @@ export const reducer = (state: State = initialState, action: ActionType) => {
       };
 
     case 'REMOVE_ROW':
-      const filteredCells = state.cells.filter((row: Cell[], index: number) => index !== action.number)
+      const filteredCells = state.cells.filter((row, index) => index !== action.number)
       return {
         ...state,
         cells: filteredCells,
@@ -77,7 +77,7 @@ export const reducer = (state: State = initialState, action: ActionType) => {
 
     case 'INCREMENT':
       const cells = [...state.cells]
-      const incrementedCell = cells[action.rowIndex].find((cell: Cell) => cell.id === action.id);
+      const incrementedCell = cells[action.rowIndex].find((cell) => cell.id === action.id);
       if (incrementedCell) {
         incrementedCell.amount++;
       }
@@ -89,7 +89,7 @@ export const reducer = (state: State = initialState, action: ActionType) => {
 
       case 'PERCENTS_TOGGLE':
         const percentsCells = [...state.cells]
-        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map((cell: Cell) => ({
+        percentsCells[action.rowIndex] = percentsCells[action.rowIndex].map((cell) => ({
           ...cell,
           isPercentsShown: !cell.isPercentsShown
         }))
@@ -108,7 +108,7 @@ export const reducer = (state: State = initialState, action: ActionType) => {
         const closest = findClosest(state.cells, action.target, state.numberOfClosest);
         const closestCells = [...state.cells];
         closestCells.forEach(row => {
-          row.forEach((cell: Cell) => {
+          row.forEach((cell) => {
             if (closest.includes(cell)) {
               cell.isCloser = !cell.isCloser
             }
