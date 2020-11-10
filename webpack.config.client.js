@@ -1,7 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const APP_PATH = path.resolve(__dirname, 'src/client/index.tsx');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   entry: APP_PATH,
@@ -30,6 +32,8 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles.css'
-    })
-  ]
+    }),
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 };
