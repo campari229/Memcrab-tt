@@ -1,9 +1,11 @@
 const path = require('path');
 const APP_PATH = path.resolve(__dirname, 'src/client/index.tsx');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: APP_PATH,
+  mode: isDevelopment ? 'development' : 'production',
 
   output: {
     filename: 'bundle.js',
