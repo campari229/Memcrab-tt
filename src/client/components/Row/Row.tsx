@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { Cell } from '../Cell/Cell.jsx';
+import { Cell } from '../Cell/Cell';
 import { useDispatch } from 'react-redux';
 import { removeRow, percentsToggle } from '../../store/store';
 import { CellInterface } from '../../../Interfaces';

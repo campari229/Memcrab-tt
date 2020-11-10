@@ -12,7 +12,7 @@ import {
 import { rowCreator } from '../../lib/lib';
 
 import './Matrix.scss';
-import { Row } from '../Row/Row.jsx';
+import { Row } from '../Row/Row';
 
 export const Matrix = () => {
   const dispatch = useDispatch();

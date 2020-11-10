@@ -30,15 +30,15 @@ export const cellsCreator = (rows: number, columns: number) => {
 
 export const getAverageValues = (array: CellInterface[][]) => {
   if (array.length) {
-    return array.reduce((acumulator, row, rowIndex) => {
-      const rowSum = row.reduce((acumulator, cell, cellIndex) => {
+    return array[0].reduce((acumulator: CellInterface[], row, rowIndex) => {
+      const rowSum = array.reduce((acumulator, cell, cellIndex) => {
         return acumulator += array[cellIndex][rowIndex].amount;
       }, 0)
 
       return [
         ...acumulator,
         {
-          amount: Math.round(rowSum / row.length),
+          amount: Math.round(rowSum / array[0].length),
           id: id(),
         }
       ]
