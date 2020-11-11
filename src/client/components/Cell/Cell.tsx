@@ -1,6 +1,8 @@
 import React, { useMemo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { increment, showClosest } from '../../store/store';
+import { increment, reducer, showClosest } from '../../store/store';
+
+import styles from '../Matrix/Matrix.css';
 
 type Props = {
   amount: number;
@@ -23,20 +25,19 @@ export const Cell: React.FC<Props> = React.memo(({ amount, id, isPercentsShown, 
       onClick={() => dispatch(increment(id, i))}
       onMouseOver={() => {dispatch(showClosest(id))}}
       onMouseOut={() => {dispatch(showClosest(id))}}
-      className={isCloser ? 'table__cell table__cell-closest' : 'table__cell'}
+      className={isCloser ? styles.cellClosest : styles.cell}
     >
-      <p className="table__text">
+      <p className={styles.text}>
         {isPercentsShown
           ? `${Math.round((amount / rowValue) * 100)}%`
           : amount
         }
       </p>
       <div
-        className="table__percents"
         style={
           isPercentsShown
-            ? {height: `${Math.round((amount / rowValue) * 100)}%`, backgroundColor: "red"}
-            : {height: "0"}
+            ? {height: `${Math.round((amount / rowValue) * 100)}%`, backgroundColor: "red", transition: "height 0.5s", position: "absolute", bottom: "0", left: "0", width: "100%"}
+            : {height: "0", backgroundColor: "red", transition: "height 0.5s", position: "absolute", bottom: "0", left: "0", width: "100%"}
         }
       />
     </td>

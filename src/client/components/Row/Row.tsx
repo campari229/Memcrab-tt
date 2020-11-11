@@ -9,6 +9,8 @@ type Props = {
   i: number;
 }
 
+import styles from '../Matrix/Matrix.css';
+
 
 export const Row: React.FC<Props> = ({ row, i }) => {
   const dispatch = useDispatch();
@@ -19,8 +21,8 @@ export const Row: React.FC<Props> = ({ row, i }) => {
 
   return (
     <>
-      <td className="table__button-wrapper">
-        <button className="table__button-remove" onClick={() => dispatch(removeRow(i))}>Remove row</button>
+      <td className={styles.buttonWrapper}>
+        <button className={styles.buttonRemove} onClick={() => dispatch(removeRow(i))}>Remove row</button>
       </td>
       {row.map((cell) => (
         <Cell
@@ -34,7 +36,7 @@ export const Row: React.FC<Props> = ({ row, i }) => {
         />
       ))}
       <td
-        className="table__cell"
+        className={styles.cell}
         onMouseOver={() => {dispatch(percentsToggle(i))}}
         onMouseOut={() => dispatch(percentsToggle(i))}
       >

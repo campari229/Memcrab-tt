@@ -4,14 +4,10 @@ import {
   getCells,
   getTableFooter,
   addRow,
-  removeRow,
-  increment,
-  percentsToggle,
-  showClosest
 } from '../../store/store';
 import { rowCreator } from '../../lib/lib';
 
-import './Matrix.scss';
+import styles from './Matrix.css';
 import { Row } from '../Row/Row';
 
 export const Matrix = () => {
@@ -21,23 +17,23 @@ export const Matrix = () => {
 
   if (cells) {
     return (
-      <table className="table">
-        <tbody className="table__body">
+      <table className={styles.table}>
+        <tbody className={styles.body}>
           {cells.map((row, i)=> (
-            <tr className="table__row" key={i}>
+            <tr className={styles.row} key={i}>
               <Row row={row} i={i} />
             </tr>
           ))}
         </tbody>
-        <tfoot className="table__footer">
-          <tr className ="table__row-footer">
+        <tfoot>
+          <tr className={styles.rowFooter}>
             {tableFooter.map((cell) => (
-              <td key={cell.id} className="table__cell-avarange">
+              <td key={cell.id} className={styles.cellAvarange}>
                 {cell.amount}
               </td>
             ))}
-            <td className="table__button-wrapper">
-              <button className="table__button-new" onClick={() => dispatch(addRow(rowCreator(cells[0].length)))}>add row</button>
+            <td className={styles.buttonWrapper}>
+              <button className={styles.buttonRemove} onClick={() => dispatch(addRow(rowCreator(cells[0].length)))}>add row</button>
             </td>
           </tr>
         </tfoot>

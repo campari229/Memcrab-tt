@@ -1,0 +1,122 @@
+.table {
+  margin: 100px auto;
+  width: 95vw;
+}
+
+.cell {
+  position: relative;
+  box-sizing: border-box;
+  transition: transform 0.5s, background-color 0.5s;
+  cursor: pointer;
+  display: block;
+  line-height: 80px;
+
+  margin: 10px 10px 0 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+};
+
+.body {
+  margin: 0 auto;
+  display: block;
+}
+
+.row {
+  display: flex;
+}
+
+.cell:active {
+  transform: scale(0.9);
+}
+
+.cellClosest {
+  position: relative;
+  box-sizing: border-box;
+  transition: transform 0.5s, background-color 0.5s;
+  cursor: pointer;
+  display: block;
+  line-height: 80px;
+
+  margin: 10px 10px 0 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+
+  background-color: green;
+  transform: scale(1.1);
+}
+
+.cellAvarange {
+  margin: 10px 10px 0 0;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  display: block;
+  line-height: 80px;
+}
+
+.rowFooter {
+  transform: translateX(70px);
+  display: flex;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  line-height: 80px;
+  z-index: 2;
+  margin: 0;
+};
+
+/* .x {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  
+  background-color: red;
+  transition: height 0.5s;
+} */
+
+.buttonWrapper {
+  background-color: #fff;
+  display: flex;
+}
+
+.buttonRemove {
+  background-color: black;
+  color: #fff;
+
+  width: 70px;
+  height: 50px;
+  margin: auto;
+
+  border-radius: 0 50% 50% 0;
+  cursor: pointer;
+}
+
+.button-new {
+  width: 60px;
+  height: 60px;
+
+  background-color: black;
+  color: #fff;
+
+  border-radius: 50% 50% 0 0;
+  cursor: pointer;
+}
