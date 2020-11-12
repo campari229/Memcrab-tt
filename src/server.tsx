@@ -2,9 +2,6 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './client/App';
-import { Provider } from 'react-redux';
-import { reducer } from './client/store/store';
-import { createStore } from 'redux';
 import { StaticRouter } from "react-router-dom"
 import { State } from './client/store/store'
 import { getAverageValues, cellsCreator } from './client/lib/lib';
@@ -42,34 +39,30 @@ server.get('*', (req, res) => {
   const params = req.path.match(/(?<=)\d+/gi)
 
   if (params && params.length === 3) {
-    const data = req.path.match(/(?<=)\d+/gi);
-    if (data) {
-      const cells = cellsCreator(Number(data[1]), Number(data[0]))
+    const cells = cellsCreator(Number(params[1]), Number(params[0]))
 
       preloadedState = {
         cells,
-        numberOfClosest: Number(data[2]),
+        numberOfClosest: Number(params[2]),
         tableFooter: getAverageValues(cells)
       }
-    }
   }
 
-  const store = createStore(reducer, preloadedState);
+  const AppContext = React.createContext(preloadedState);
 
   const context = {};
 
-  const finalState = store.getState();
 
   let app = renderToString(
     <StaticRouter location={req.path} context={context} >
-      <Provider store={store}>
+      <AppContext.Provider value={preloadedState}>
         <App />
-      </Provider>
+      </AppContext.Provider>
     </StaticRouter>
   )
 
   res.send(
-    htmlMaker(app, finalState)
+    htmlMaker(app, preloadedState)
   )
 })
 

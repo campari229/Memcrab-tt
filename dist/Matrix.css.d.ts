@@ -9,7 +9,7 @@ declare const styles: {
   readonly "text": string;
   readonly "buttonWrapper": string;
   readonly "buttonRemove": string;
-  readonly "button-new": string;
+  readonly "buttonNew": string;
 };
 export = styles;
 

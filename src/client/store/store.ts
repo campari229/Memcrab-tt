@@ -1,4 +1,4 @@
-import {createStore, AnyAction } from 'redux';
+import React from 'react';
 import { getAverageValues, findClosest } from '../lib/lib';
 import { CellInterface } from '../../Interfaces';
 import { actions, ActionType } from './actions';
@@ -42,7 +42,7 @@ export type State = {
 export const getCells = (state: State) => state.cells;
 export const getTableFooter = (state: State) => state.tableFooter;
 
-const initialState = {
+const initialState: State = {
   cells: [],
   tableFooter: [],
   numberOfClosest: 0,
@@ -123,3 +123,5 @@ export const reducer = (state: State = initialState, action: ActionType) => {
       return state;
   }
 };
+
+export const AppContext = React.createContext(initialState)

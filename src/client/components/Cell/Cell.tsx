@@ -1,6 +1,5 @@
-import React, { useMemo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { increment, reducer, showClosest } from '../../store/store';
+import React, { useEffect } from 'react';
+import { increment, showClosest } from '../../store/store';
 
 import styles from '../Matrix/Matrix.css';
 
@@ -11,10 +10,10 @@ type Props = {
   isCloser?: boolean;
   i: number;
   rowValue: number;
+  dispatch: any;
 }
 
-export const Cell: React.FC<Props> = React.memo(({ amount, id, isPercentsShown, isCloser, i, rowValue }) => {
-  const dispatch = useDispatch();
+export const Cell: React.FC<Props> = React.memo(({ amount, id, isPercentsShown, isCloser, i, rowValue, dispatch }) => {
 
   useEffect(() => {
     console.log(`cell mount ${amount}`)

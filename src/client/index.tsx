@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom"
 import App from './App';
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
-import { reducer } from './store/store';
-import { createStore } from 'redux';
-import { State } from './store/store';
+import { State, AppContext } from './store/store';
 
 declare global {
   interface Window {
@@ -13,18 +10,23 @@ declare global {
   }
 }
 
-const preloadedState: State | undefined = window.__PRELOADED_STATE__
+let initialState: State = {
+  cells: [],
+  tableFooter: [],
+  numberOfClosest: 0,
+};
 
-delete window.__PRELOADED_STATE__
+if (window.__PRELOADED_STATE__) {
+  initialState = window.__PRELOADED_STATE__
 
-const store = createStore(reducer, preloadedState)
-
+  delete window.__PRELOADED_STATE__
+}
 
 ReactDOM.hydrate(
   <BrowserRouter>
-    <Provider store={store}>
+    <AppContext.Provider value={initialState}>
       <App />
-    </Provider>
+    </AppContext.Provider>
   </BrowserRouter>,
   document.getElementById('app')
 )
